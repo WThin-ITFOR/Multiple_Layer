@@ -4,11 +4,11 @@ on:
     inputs:
       layer_path: 
         description: 'layer path'
-        type: String
+        type: choice
         required: true
       layer_name: 
         description: 'layer name'
-        type: String
+        type: choice
         required: true
 
 jobs:
