@@ -22,6 +22,8 @@ jobs:
       id-token: write
     needs: compress_zip
     steps: 
+      - name: Source Code Checkout 
+        uses: actions/checkout@v4
       - name: Download Artifact and View
         uses: ./.github/actions/download-artifact-and-view
       - name: Setup AWS
