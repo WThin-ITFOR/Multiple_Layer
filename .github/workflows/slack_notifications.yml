@@ -21,18 +21,23 @@ jobs:
     name: Slack-Notification
     runs-on: ubuntu-latest
     steps:
+    - name: Check if the workflow run succeeded or failed
+      run: |
+        echo "Status of the workflow run: ${{ github.event.workflow_run.conclusion }}"
     #-- Gitリポジトリの内容を取得 --#
     - name: Checkout
       uses: actions/checkout@v4
     - name: Slack Notification on Success
-      if: success()
+      # if: success()
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_TITLE: Deploy / Success
         SLACK_COLOR: good
         SLACK_MESSAGE: デプロイ完了しました🚀
     - name: Slack Notification on Failure
-      if: failure()
+      # if: failure()
+      if: ${{ github.event.workflow_run.conclusion == 'failure' }}
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_TITLE: Deploy / Failure
