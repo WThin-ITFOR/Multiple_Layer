@@ -39,4 +39,4 @@ jobs:
         uses : actions/upload-artifact@v4.0.0
         with:
           name : python-app
-          path : ${{ inputs.layer_name }}.zip
+          path : ${{ inputs.layer_path }}/${{ inputs.layer_name }}.zip
