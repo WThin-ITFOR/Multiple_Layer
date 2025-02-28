@@ -8,5 +8,5 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: python-app
-    - name: Display downloaded files
-      run: ls -lah
+    # - name: Display downloaded files
+    #   run: ls -lah

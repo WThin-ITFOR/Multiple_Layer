@@ -23,10 +23,7 @@ jobs:
     steps:
     #-- Gitリポジトリの内容を取得 --#
     - name: Checkout
-      uses: actions/checkout@v3
-
-    #-- Slack通知 --#
-    # 成功
+      uses: actions/checkout@v4
     - name: Slack Notification on Success
       if: success()
       uses: rtCamp/action-slack-notify@v2
@@ -34,8 +31,6 @@ jobs:
         SLACK_TITLE: Deploy / Success
         SLACK_COLOR: good
         SLACK_MESSAGE: デプロイ完了しました🚀
-
-    # 失敗
     - name: Slack Notification on Failure
       if: failure()
       uses: rtCamp/action-slack-notify@v2
