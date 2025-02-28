@@ -32,7 +32,9 @@ jobs:
           mkdir -p ./python && rsync -av --exclude=python ./ ./python/
           pip install -r requirements.txt -t ./python
       - name : Zip Artifact For Deployment
-        run : zip -r ${{ inputs.layer_name }}.zip python -x "venv/*" ".github/*" ".git/*"
+        run : |
+          cd ${{ inputs.layer_path }}
+          zip -r ${{ inputs.layer_name }}.zip python -x "venv/*" ".github/*" ".git/*"
       - name : Upload artifact for deployment jobs
         uses : actions/upload-artifact@v4.0.0
         with:
