@@ -28,8 +28,8 @@ jobs:
     #-- Slack通知 --#
     # 成功
     - name: Slack Notification on Success
+      if: success()
       uses: rtCamp/action-slack-notify@v2
-      if: ${{ success() }}
       env:
         SLACK_TITLE: Deploy / Success
         SLACK_COLOR: good
@@ -37,8 +37,8 @@ jobs:
 
     # 失敗
     - name: Slack Notification on Failure
+      if: failure()
       uses: rtCamp/action-slack-notify@v2
-      if: ${{ failure() }}
       env:
         SLACK_TITLE: Deploy / Failure
         SLACK_COLOR: danger
