@@ -4,9 +4,11 @@ on:
     inputs:
       layer_path: 
         description: 'layer path'
+        type: string
         required: true
       layer_name: 
         description: 'layer name'
+        type: string
         required: true
 
 jobs:
