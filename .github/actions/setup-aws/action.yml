@@ -1,0 +1,18 @@
+name: "Setup AWS Credentials"
+description: "Setup AWS CLI with provided credentials"
+inputs:
+  aws_role_arn :
+    description: "AWS ROLE ARN"
+    required: true
+  aws_region:
+    description: "REGION NAME"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: ${{ inputs.aws_role_arn }}
+        aws-region: ${{ inputs.aws_region }}

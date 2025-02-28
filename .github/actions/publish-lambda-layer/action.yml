@@ -1,0 +1,15 @@
+name: "Publish Lambda Layer"
+description: "Publish lambda layer with aws cli"
+inputs:
+  layer_name :
+    description: "Layer Name"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Upload Layer to AWS Lambda
+      run: |
+        aws lambda publish-layer-version \
+          --layer-name ${{ inputs.layer_name }} \
+          --compatible-runtimes python3.12 \
+          --zip-file fileb://${{ inputs.layer_name }}.zip

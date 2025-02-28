@@ -1,0 +1,12 @@
+name: "Download artifact and View"
+description: "Download File and List"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: python-app
+    - name: Display downloaded files
+      run: ls -lah

@@ -1,0 +1,39 @@
+name: Compress Zip Named Python
+on: 
+  workflow_call:
+    inputs:
+      layer_path: 
+        description: 'layer path'
+        type: String
+        required: true
+      layer_name: 
+        description: 'layer name'
+        type: String
+        required: true
+
+jobs:
+  archive_library: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Source Code Checkout 
+        uses: actions/checkout@v4
+      - name: Set Up Python Version
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.12'
+          cache: 'pip'
+      - name : Create and Start Virtual Enviroment
+        run : |
+          python -m venv venv
+          source venv/bin/activate
+      - name : Install Dependencies and Copy Files
+        run : |
+          cd ${{ inputs.layer_path }}
+          mkdir -p ./python && cp -r . ./python && pip install -r requirements.txt -t ./python
+      - name : Zip Artifact For Deployment
+        run : zip -r ${{ inputs.layer_name }}.zip python -x "venv/*" ".github/*" ".git/*"
+      - name : Upload artifact for deployment jobs
+        uses : actions/upload-artifact@v4.0.0
+        with:
+          name : python-app
+          path : ${{ inputs.layer_name }}.zip
