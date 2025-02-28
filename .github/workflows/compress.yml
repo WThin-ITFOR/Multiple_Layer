@@ -29,7 +29,7 @@ jobs:
       - name : Install Dependencies and Copy Files
         run : |
           cd ${{ inputs.layer_path }}
-          mkdir -p ./python && cp -r ./* ./python && pip install -r requirements.txt -t ./python/
+          mkdir -p ./python && cp -r ./* ./python/ && pip install -r requirements.txt -t ./python
       - name : Zip Artifact For Deployment
         run : zip -r ${{ inputs.layer_name }}.zip python -x "venv/*" ".github/*" ".git/*"
       - name : Upload artifact for deployment jobs
