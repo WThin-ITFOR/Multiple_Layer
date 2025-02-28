@@ -38,7 +38,7 @@ on:
 jobs:
   compress_zip:
     uses: ./.github/workflows/compress.yml
-    wtih:
+    with:
       layer_path: ${{ inputs.layer_path }}
       layer_name: ${{ inputs.layer_name }}
   deploy:

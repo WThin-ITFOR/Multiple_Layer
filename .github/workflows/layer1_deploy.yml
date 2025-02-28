@@ -12,7 +12,7 @@ env:
 jobs:
   compress_zip:
     uses: ./.github/workflows/compress.yml
-    wtih:
+    with:
       layer_path: $LAYER_PATH
       layer_name: $LAYER_NAME]
   layer1-deploy:
