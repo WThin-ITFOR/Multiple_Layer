@@ -15,6 +15,7 @@ jobs:
     wtih:
       layer_path: $LAYER_PATH
       layer_name: $LAYER_NAME
+  layer2-deploy:
     runs-on: ubuntu-latest
     environment: Staging
     permissions:
