@@ -10,10 +10,8 @@ def get_s3(access_key, secret_key, region_name, bucket_name):
             aws_secret_access_key=secret_key ,
             region_name=region_name
     )
-
     response = s3.list_objects_v2(Bucket=bucket_name)
     objects = response.get('Contents', [])
-
     for obj in objects:
         print(f"- {obj['Key']}")
     else:

@@ -5,16 +5,12 @@ on:
     branches:
       - releases/layer3
 
-env:
-  LAYER_PATH: "Layer3"
-  LAYER_NAME: "layer-three"
-
 jobs:
   compress_zip:
     uses: ./.github/workflows/compress.yml
     with:
-      layer_path: $LAYER_PATH
-      layer_name: $LAYER_NAME
+      layer_path: "Layer3"
+      layer_name: "layer-three"
   layer3-deploy:
     runs-on: ubuntu-latest
     environment: Staging
@@ -34,4 +30,4 @@ jobs:
       - name: Upload Layer to AWS Lambda
         uses: ./.github/actions/publish-lambda-layer
         with: 
-          layer_name: $LAYER_NAME
+          layer_name: "layer-three"
