@@ -12,7 +12,7 @@ on:
 
 
 env:
-  SLACK_USERNAME: DeployBot
+  SLACK_USERNAME: Multiple Layer Deploy Bot
   SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
