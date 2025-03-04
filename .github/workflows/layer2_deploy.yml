@@ -5,16 +5,20 @@ on:
     branches:
       - releases/layer2
 
-env:
-  LAYER_PATH: "Layer2"
-  LAYER_NAME: "layer-two"
+# env:
+#   LAYER_PATH: "Layer2"
+#   LAYER_NAME: "layer-two"
 
 jobs:
+  output_env: 
+    - run: |
+       echo "LAYER_PATH=Layer2" >> $GITHUB_ENV
+       echo "LAYER_NAME=layer-two" >> $GITHUB_ENV
   compress_zip:
     uses: ./.github/workflows/compress.yml
     with:
-      layer_path: ${{ env.LAYER_PATH }}
-      layer_name: ${{ env.LAYER_NAME }}
+      layer_path: "$LAYER_PATH"
+      layer_name: "$LAYER_NAME"
   layer2-deploy:
     runs-on: ubuntu-latest
     environment: Staging
@@ -34,4 +38,4 @@ jobs:
       - name: Upload Layer to AWS Lambda
         uses: ./.github/actions/publish-lambda-layer
         with: 
-          layer_name: ${{ env.LAYER_NAME }}
+          layer_name: "$LAYER_NAME"
