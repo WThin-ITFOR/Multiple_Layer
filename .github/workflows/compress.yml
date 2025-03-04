@@ -29,7 +29,7 @@ jobs:
       - name : Install Dependencies and Copy Files
         run : |
           cd ${{ inputs.layer_path }}
-          mkdir -p ./python && rsync -av --exclude=python ./ ./python/
+          mkdir -p ./python && rsync -av --ignore-missing-args --exclude=python ./ ./python/
           pip install -r requirements.txt -t ./python
       - name : Zip Artifact For Deployment
         run : |
