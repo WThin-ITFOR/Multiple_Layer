@@ -8,6 +8,7 @@ runs:
   using: "composite"
   steps:
     - name: Upload Layer to AWS Lambda
+      shell: bash
       run: |
         aws lambda publish-layer-version \
           --layer-name ${{ inputs.layer_name }} \
