@@ -1,8 +1,5 @@
 name: Deploy Manual
 on: 
-  push:
-    branches:
-     - 'releases/**'
   workflow_dispatch:
     inputs:
       logLevel:
